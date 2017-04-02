@@ -77,7 +77,7 @@ namespace SharpGL
                 for (var j = 0; j < head.PixelHeight; j++)
                 {
                     Color pixel = head.GetPixel(i, j);
-                    if(!(pixel.R == 255 && pixel.G == 255 && pixel.B == 255))
+                    if(!(pixel.Equals(Color.FromRgb(255, 255, 255))))
                     {
                         arr[0] += pixel.R;
                         arr[1] += pixel.G;
@@ -101,7 +101,7 @@ namespace SharpGL
                 for (var j = 0; j < wbm.PixelHeight; j++)
                 {
                     Color srcPixel = wbm.GetPixel(i, j);
-                    if (srcPixel.A != 0)
+                    if (srcPixel.A >= 255 * 0.9)
                     {
                         wbm.SetPixel(i, j, (byte)(pixel.R * alpha + srcPixel.R * beta), (byte)(pixel.G * alpha + srcPixel.G * beta), (byte)(pixel.B * alpha + srcPixel.B * beta));
                     }
@@ -157,15 +157,10 @@ namespace SharpGL
                 {
                     Color srcPixel = head.GetPixel(i, j);
                     
-                    if(srcPixel.R == 0 && srcPixel.G == 0 && srcPixel.B == 0)
+                    if(srcPixel.Equals(Color.FromRgb(0, 0, 0)))
                     {
                         //Remove Background
-                        srcPixel.R = 255;
-                        srcPixel.G = 255;
-                        srcPixel.B = 255;
-                        //srcPixel.A = 0;
-
-                        head.SetPixel(i, j, srcPixel);
+                        head.SetPixel(i, j, Color.FromRgb(255, 255, 255));
                     }
                     else
                     {
