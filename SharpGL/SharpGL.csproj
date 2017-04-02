@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{77CBA396-DF8F-4AC5-BA16-A01467750755}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>SharpGL</RootNamespace>
+    <AssemblyName>SharpGL</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="SharpGL, Version=2.4.0.0, Culture=neutral, PublicKeyToken=27fc851303210b27, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpGL.2.4.0.0\lib\net40\SharpGL.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpGL.SceneGraph, Version=2.4.0.0, Culture=neutral, PublicKeyToken=27fc851303210b27, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpGL.2.4.0.0\lib\net40\SharpGL.SceneGraph.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpGL.WPF, Version=2.4.0.0, Culture=neutral, PublicKeyToken=27fc851303210b27, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpGL.WPF.2.4.0.0\lib\net40\SharpGL.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WriteableBitmapEx.Wpf, Version=1.5.0.0, Culture=neutral, PublicKeyToken=50375ca6144f1c69, processorArchitecture=MSIL">
+      <HintPath>..\packages\WriteableBitmapEx.1.5.0.0\lib\net40\WriteableBitmapEx.Wpf.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="assets\0\baju0.png" />
+    <Resource Include="assets\0\baju10.png" />
+    <Resource Include="assets\0\baju2.png" />
+    <Resource Include="assets\0\baju3.png" />
+    <Resource Include="assets\0\baju4.png" />
+    <Resource Include="assets\0\baju5.png" />
+    <Resource Include="assets\0\baju6.png" />
+    <Resource Include="assets\0\baju7.png" />
+    <Resource Include="assets\0\baju8.png" />
+    <Resource Include="assets\0\baju9.png" />
+    <Resource Include="assets\0\bodyAtas.png" />
+    <Resource Include="assets\0\bodyBawah.png" />
+    <Resource Include="assets\0\celana0.png" />
+    <Resource Include="assets\0\celana1.png" />
+    <Resource Include="assets\0\celana2.png" />
+    <Resource Include="assets\1\baju0.png" />
+    <Resource Include="assets\1\baju10.png" />
+    <Resource Include="assets\1\baju2.png" />
+    <Resource Include="assets\1\baju3.png" />
+    <Resource Include="assets\1\baju4.png" />
+    <Resource Include="assets\1\baju5.png" />
+    <Resource Include="assets\1\baju6.png" />
+    <Resource Include="assets\1\baju7.png" />
+    <Resource Include="assets\1\baju8.png" />
+    <Resource Include="assets\1\baju9.png" />
+    <Resource Include="assets\1\bodyAtas.png" />
+    <Resource Include="assets\1\bodyBawah.png" />
+    <Resource Include="assets\1\celana0.png" />
+    <Resource Include="assets\1\celana1.png" />
+    <Resource Include="assets\1\celana2.png" />
+    <Resource Include="assets\2\baju0.png" />
+    <Resource Include="assets\2\baju10.png" />
+    <Resource Include="assets\2\baju2.png" />
+    <Resource Include="assets\2\baju3.png" />
+    <Resource Include="assets\2\baju4.png" />
+    <Resource Include="assets\2\baju5.png" />
+    <Resource Include="assets\2\baju6.png" />
+    <Resource Include="assets\2\baju7.png" />
+    <Resource Include="assets\2\baju8.png" />
+    <Resource Include="assets\2\baju9.png" />
+    <Resource Include="assets\2\bodyAtas.png" />
+    <Resource Include="assets\2\bodyBawah.png" />
+    <Resource Include="assets\2\celana0.png" />
+    <Resource Include="assets\2\celana1.png" />
+    <Resource Include="assets\2\celana2.png" />
+    <Resource Include="assets\3\baju0.png" />
+    <Resource Include="assets\3\baju2.png" />
+    <Resource Include="assets\3\baju3.png" />
+    <Resource Include="assets\3\baju4.png" />
+    <Resource Include="assets\3\baju5.png" />
+    <Resource Include="assets\3\baju6.png" />
+    <Resource Include="assets\3\baju7.png" />
+    <Resource Include="assets\3\baju8.png" />
+    <Resource Include="assets\3\bodyAtas.png" />
+    <Resource Include="assets\3\bodyBawah.png" />
+    <Resource Include="assets\3\celana0.png" />
+    <Resource Include="assets\3\celana1.png" />
+    <Resource Include="assets\3\celana2.png" />
+    <Resource Include="assets\4\baju0.png" />
+    <Resource Include="assets\4\baju10.png" />
+    <Resource Include="assets\4\baju2.png" />
+    <Resource Include="assets\4\baju3.png" />
+    <Resource Include="assets\4\baju4.png" />
+    <Resource Include="assets\4\baju5.png" />
+    <Resource Include="assets\4\baju6.png" />
+    <Resource Include="assets\4\baju7.png" />
+    <Resource Include="assets\4\baju8.png" />
+    <Resource Include="assets\4\baju9.png" />
+    <Resource Include="assets\4\bodyAtas.png" />
+    <Resource Include="assets\4\bodyBawah.png" />
+    <Resource Include="assets\4\celana0.png" />
+    <Resource Include="assets\4\celana1.png" />
+    <Resource Include="assets\4\celana2.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
