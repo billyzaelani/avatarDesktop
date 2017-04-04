@@ -145,9 +145,13 @@ namespace SharpGL
 
 
         //Head Section
-        private void PreprocessHead(double brightness)
+        private void PreprocessHead(bool removeBg, bool normalize)
         {
-            for (var i = 0; i < head.PixelWidth; i++)
+            Color min = new Color();
+            Color max = new Color();
+            min.R = min.G = min.B = 255;
+            max.R = max.G = max.B = 0;
+            for(var i = 0; i < head.PixelWidth; i++)
             {
                 for(var j = 0; j < head.PixelHeight; j++)
                 {
@@ -155,19 +159,73 @@ namespace SharpGL
                     
                     if(srcPixel.Equals(Color.FromRgb(0, 0, 0)))
                     {
-                        //Remove Background
-                        head.SetPixel(i, j, Color.FromRgb(255, 255, 255));
+                        if(removeBg)
+                        {
+                            //Remove Background
+                            head.SetPixel(i, j, Color.FromRgb(255, 255, 255));
+                        }
                     }
                     else
                     {
+                        //Find lowest raw pixel of each channel
+                        if(srcPixel.R < min.R)
+                        {
+                            min.R = srcPixel.R;
+                        }
+                        if(srcPixel.G < min.G)
+                        {
+                            min.G = srcPixel.G;
+                        }
+                        if(srcPixel.B < min.B)
+                        {
+                            min.B = srcPixel.B;
+                        }
+
+                        //Find highest raw pixel of each channel
+                        if(srcPixel.R > max.R)
+                        {
+                            max.R = srcPixel.R;
+                        }
+                        if(srcPixel.G > max.G)
+                        {
+                            max.G = srcPixel.G;
+                        }
+                        if(srcPixel.B > max.B)
+                        {
+                            max.B = srcPixel.B;
+                        }
                         //Adjust Brightness
-                        srcPixel.R = Truncate((double)srcPixel.R * brightness);
-                        srcPixel.G = Truncate((double)srcPixel.G * brightness);
-                        srcPixel.B = Truncate((double)srcPixel.B * brightness);
-                        head.SetPixel(i, j, srcPixel);
+                        //srcPixel.R = Truncate((double)srcPixel.R * brightness);
+                        //srcPixel.G = Truncate((double)srcPixel.G * brightness);
+                        //srcPixel.B = Truncate((double)srcPixel.B * brightness);
+                        //head.SetPixel(i, j, srcPixel);
                     }
                 }
             }
+
+            for(var i = 0; i < head.PixelWidth; i++)
+            {
+                for(var j = 0; j < head.PixelHeight; j++)
+                {
+                    Color srcPixel = head.GetPixel(i, j);
+
+                    if(!srcPixel.Equals(Color.FromRgb(255, 255, 255)))
+                    {
+                        if(normalize)
+                        {
+                            //Normalized
+                            head.SetPixel(i, j, Color.FromRgb(Normalized(srcPixel.R, min.R, max.R, 0, 255),
+                                                              Normalized(srcPixel.G, min.G, max.G, 0, 255),
+                                                              Normalized(srcPixel.B, min.B, max.B, 0, 255)));
+                        }
+                    }
+                }
+            }
+        }
+
+        private byte Normalized(byte i, byte min, byte max, byte newMin, byte newMax)
+        {
+            return (byte)((i-min) * (newMax-newMin) / (max-min) + newMin);
         }
 
         private void DrawHead()
@@ -297,7 +355,7 @@ namespace SharpGL
          * Mengubah kepala dari gambar base64 sekaligus menggambarnya pada canvas.
          * @param {string imgBase64} String berisikan gambar base64
          * Fungsi ini sekaligus melakukan praproses terhadap gambar berupa menghilangkan background
-         * dan menambahkan brightness. Setelah itu digambar pada canvas. Fungsi ini
+         * dan normalized agar untuk adjust brightness. Setelah itu digambar pada canvas. Fungsi ini
          * juga menentukan skinColorCategory, panggil fungsi GetSkinColorCategory()
          * setelah memanggil fungsi ini untuk mendapatkan kategori.
          */
@@ -310,7 +368,7 @@ namespace SharpGL
             bitmap.EndInit();
 
             head = new WriteableBitmap(bitmap);
-            PreprocessHead(2.2);
+            PreprocessHead(true, true);
             SetSkinColorCategory(GetSkinColorFromHead());
             DrawHead();
         }
@@ -383,7 +441,6 @@ namespace SharpGL
             SetUpperClothes("baju0.png");
             SetLowerClothes("celana0.png");
             Console.WriteLine(GetSkinColorCategory());
-            //Console.WriteLine(upperClothes.Format);
         }
 
 
